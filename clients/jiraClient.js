@@ -30,7 +30,7 @@ const issueTypesID = {
  * @param {string} summary
  * @param {string} desc
  */
-const createIssue = (projectID, issueTypeID, summary, desc) => {
+const createIssue = (projectID, issueTypeID, summary, desc, reporter) => {
   const data = {
     fields: {
       summary: summary,
@@ -44,6 +44,15 @@ const createIssue = (projectID, issueTypeID, summary, desc) => {
         type: 'doc',
         version: 1,
         content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                text: `Reporter: ${reporter}`,
+                type: 'text'
+              }
+            ]
+          },
           {
             type: 'paragraph',
             content: [

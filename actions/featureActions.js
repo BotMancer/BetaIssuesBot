@@ -1,5 +1,10 @@
 const { Markup } = require('telegraf');
-const { projectsID, issueTypesID, createIssue } = require('@utils/jiraClient');
+const {
+  projectsID,
+  issueTypesID,
+  createIssue
+} = require('@clients/jiraClient');
+const { getMessage, getOwner } = require('@utils/parseCbQuery');
 
 const featureApprovedAction = async (ctx) => {
   const { text, entities } = ctx.callbackQuery.message;
@@ -7,20 +12,16 @@ const featureApprovedAction = async (ctx) => {
     inline_keyboard: []
   });
 
-  const featureMessage = text
-    .substr(
-      entities[entities.length - 1].offset +
-        entities[entities.length - 1].length,
-      text.length
-    )
-    .trim();
+  const featureOwner = getOwner(text, entities);
+  const featureMessage = getMessage(text, entities);
 
-  // createIssue(
-  //   projectsID.RRA,
-  //   issueTypesID.RRA.FEATURE,
-  //   'BOT - NEW FEATURE',
-  //   featureMessage
-  // );
+  createIssue(
+    projectsID.RRA,
+    issueTypesID.RRA.FEATURE,
+    'BOT - NEW FEATURE',
+    featureMessage,
+    featureOwner
+  );
 };
 
 const featureRestoredAction = async (ctx) => {

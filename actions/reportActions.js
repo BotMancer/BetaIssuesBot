@@ -1,26 +1,28 @@
 const { Markup } = require('telegraf');
-const { projectsID, issueTypesID, createIssue } = require('@utils/jiraClient');
+const {
+  projectsID,
+  issueTypesID,
+  createIssue
+} = require('@clients/jiraClient');
+const { getMessage, getOwner } = require('@utils/parseCbQuery');
 
 const reportApprovedAction = async (ctx) => {
   const { text, entities } = ctx.callbackQuery.message;
+
+  const reportOwner = getOwner(text, entities);
+  const reportMessage = getMessage(text, entities);
+
   await ctx.editMessageReplyMarkup({
     inline_keyboard: []
   });
 
-  const reportMessage = text
-    .substr(
-      entities[entities.length - 1].offset +
-        entities[entities.length - 1].length,
-      text.length
-    )
-    .trim();
-
-  // createIssue(
-  //   projectsID.RRA,
-  //   issueTypesID.RRA.BUG,
-  //   'BOT - NEW BUG',
-  //   reportMessage
-  // );
+  createIssue(
+    projectsID.RRA,
+    issueTypesID.RRA.BUG,
+    'BOT - NEW BUG',
+    reportMessage,
+    reportOwner
+  );
 };
 
 const reportRestoredAction = async (ctx) => {
