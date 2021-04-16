@@ -1,6 +1,6 @@
 const { Markup } = require('telegraf');
 
-const reportCommand = (ctx, telegram) => {
+const bugCommand = (ctx, telegram) => {
   if (ctx.message.chat.id == process.env.TESTING_GROUP_ID) {
     try {
       const { from, entities, text } = ctx.message;
@@ -36,4 +36,4 @@ const reportCommand = (ctx, telegram) => {
   }
 };
 
-module.exports = reportCommand;
+module.exports = bugCommand;

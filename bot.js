@@ -6,15 +6,15 @@ const { Telegraf } = require('telegraf');
 const { Telegram } = require('telegraf');
 
 // Commands.
-const reportCommand = require('@commands/reportCommand');
+const bugCommand = require('@commands/bugCommand');
 const featureCommand = require('@commands/featureCommand');
 
 // Actions.
 const {
-  reportApprovedAction,
-  reportRestoredAction,
-  reportRejectedAction
-} = require('@actions/reportActions');
+  bugApprovedAction,
+  bugRestoredAction,
+  bugRejectedAction
+} = require('@actions/bugActions');
 const {
   featureApprovedAction,
   featureRestoredAction,
@@ -29,13 +29,13 @@ const telegram = new Telegram(process.env.BOT_TOKEN);
 bot.use(Telegraf.log());
 
 // Commands registration.
-bot.command('report', (ctx) => reportCommand(ctx, telegram));
+bot.command('bug', (ctx) => bugCommand(ctx, telegram));
 bot.command('feature', (ctx) => featureCommand(ctx, telegram));
 
 // Bug related actions registration.
-bot.action('APPROVE_BUG', (ctx) => reportApprovedAction(ctx));
-bot.action('REJECT_BUG', (ctx) => reportRejectedAction(ctx));
-bot.action('RESTORE_BUG', (ctx) => reportRestoredAction(ctx));
+bot.action('APPROVE_BUG', (ctx) => bugApprovedAction(ctx));
+bot.action('REJECT_BUG', (ctx) => bugRejectedAction(ctx));
+bot.action('RESTORE_BUG', (ctx) => bugRestoredAction(ctx));
 
 // Feature related actions registration.
 bot.action('APPROVE_FEATURE', (ctx) => featureApprovedAction(ctx));

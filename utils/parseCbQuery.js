@@ -7,8 +7,9 @@ const getMessage = (text, entities) => {
   try {
     return text
       .substr(
-        entities[entities.length - 1].offset,
-        entities[entities.length - 1].length
+        entities[entities.length - 1].offset +
+          entities[entities.length - 1].length,
+        text.length
       )
       .trim();
   } catch (e) {
@@ -25,9 +26,8 @@ const getOwner = (text, entities) => {
   try {
     return text
       .substr(
-        entities[entities.length - 1].offset +
-          entities[entities.length - 1].length,
-        text.length
+        entities[entities.length - 1].offset,
+        entities[entities.length - 1].length
       )
       .trim();
   } catch (e) {

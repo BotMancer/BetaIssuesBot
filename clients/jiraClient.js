@@ -30,7 +30,7 @@ const issueTypesID = {
  * @param {string} summary
  * @param {string} desc
  */
-const createIssue = (projectID, issueTypeID, summary, desc, reporter) => {
+const createIssue = async (projectID, issueTypeID, summary, desc, reporter) => {
   const data = {
     fields: {
       summary: summary,
@@ -67,7 +67,7 @@ const createIssue = (projectID, issueTypeID, summary, desc, reporter) => {
     }
   };
 
-  fetch(`${BASE_URL}/issue`, {
+  const response = await fetch(`${BASE_URL}/rest/api/3/issue`, {
     method: 'POST',
     headers: {
       Authorization: `Basic ${JIRA_TOKEN}`,
@@ -75,11 +75,14 @@ const createIssue = (projectID, issueTypeID, summary, desc, reporter) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
-  })
-    .then((res) => {
-      return res.status;
-    })
-    .catch((err) => console.error(err));
+  }).catch((err) => console.error(err));
+
+  const parsedResponse = JSON.parse(await response.text());
+
+  return {
+    ...parsedResponse,
+    status: response.status
+  };
 };
 
 module.exports = { projectsID, issueTypesID, createIssue };
