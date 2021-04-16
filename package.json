@@ -31,6 +31,7 @@
     "@commands": "./commands",
     "@actions": "./actions",
     "@utils": "./utils",
-    "@clients": "./clients"
+    "@clients": "./clients",
+    "@loaders": "./loaders"
   }
 }
