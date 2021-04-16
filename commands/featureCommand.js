@@ -7,27 +7,31 @@ const featureCommand = (ctx, telegram) => {
       const command = text.substr(0, entities[0].length);
       const message = text.replace(command, '').trim();
 
-      telegram
-        .sendMessage(
-          process.env.CHECK_CHANNEL_ID,
-          `*FEATURE REQUESTED:* ✨\n\n*FROM:* [${from.first_name} ${
-            from.last_name || ''
-          }](tg://user?id=${from.id})\n\n${message}`,
-          {
-            parse_mode: 'Markdown',
-            ...Markup.inlineKeyboard([
-              [Markup.button.callback('✅ APPROVE', 'APPROVE_FEATURE')],
-              [Markup.button.callback('❌ REJECT', 'REJECT_FEATURE')]
-            ])
-          }
-        )
-        .then((_) => {
-          ctx.reply(
-            'Richiesta inviata correttamente, grazie mille per il consiglio!'
-          );
-        });
+      if (message != '') {
+        telegram
+          .sendMessage(
+            process.env.CHECK_CHANNEL_ID,
+            `*FEATURE REQUESTED:* ✨\n\n*FROM:* [${from.first_name} ${
+              from.last_name || ''
+            }](tg://user?id=${from.id})\n\n${message}`,
+            {
+              parse_mode: 'Markdown',
+              ...Markup.inlineKeyboard([
+                [Markup.button.callback('✅ APPROVE', 'APPROVE_FEATURE')],
+                [Markup.button.callback('❌ REJECT', 'REJECT_FEATURE')]
+              ])
+            }
+          )
+          .then((_) => {
+            ctx.reply(
+              'Richiesta inviata correttamente, grazie mille per il consiglio!'
+            );
+          });
+      } else {
+        ctx.reply('Si prega di inserire una descrizione.');
+      }
     } catch (e) {
-      ctx.reply('error');
+      ctx.reply('An error occurred.');
     }
   } else {
     ctx.reply(

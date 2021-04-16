@@ -7,27 +7,31 @@ const bugCommand = (ctx, telegram) => {
       const command = text.substr(0, entities[0].length);
       const message = text.replace(command, '').trim();
 
-      telegram
-        .sendMessage(
-          process.env.CHECK_CHANNEL_ID,
-          `*BUG REPORTED:* 🐛\n\n*FROM:* [${from.first_name} ${
-            from.last_name || ''
-          }](tg://user?id=${from.id})\n\n${message}`,
-          {
-            parse_mode: 'Markdown',
-            ...Markup.inlineKeyboard([
-              [Markup.button.callback('✅ APPROVE', 'APPROVE_BUG')],
-              [Markup.button.callback('❌ REJECT', 'REJECT_BUG')]
-            ])
-          }
-        )
-        .then((_) => {
-          ctx.reply(
-            'Segnalazione inviata correttamente, grazie mille per il feedback!'
-          );
-        });
+      if (message != '') {
+        telegram
+          .sendMessage(
+            process.env.CHECK_CHANNEL_ID,
+            `*BUG REPORTED:* 🐛\n\n*FROM:* [${from.first_name} ${
+              from.last_name || ''
+            }](tg://user?id=${from.id})\n\n${message}`,
+            {
+              parse_mode: 'Markdown',
+              ...Markup.inlineKeyboard([
+                [Markup.button.callback('✅ APPROVE', 'APPROVE_BUG')],
+                [Markup.button.callback('❌ REJECT', 'REJECT_BUG')]
+              ])
+            }
+          )
+          .then((_) => {
+            ctx.reply(
+              'Segnalazione inviata correttamente, grazie mille per il feedback!'
+            );
+          });
+      } else {
+        ctx.reply('Si prega di inserire una descrizione.');
+      }
     } catch (e) {
-      ctx.reply('error');
+      ctx.reply('An error occurred.');
     }
   } else {
     ctx.reply(
