@@ -11,4 +11,4 @@ module.exports = (bot, telegram, callback, trigger) => {
     callback(ctx, telegram, message, from);
   });
   return;
-}
+};

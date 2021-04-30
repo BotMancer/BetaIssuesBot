@@ -41,6 +41,6 @@ const getCommandMessage = (text, entities) => {
   } catch (e) {
     console.error(e);
   }
-}
+};
 
 module.exports = { getReportMessage, getReportOwner, getCommandMessage };
