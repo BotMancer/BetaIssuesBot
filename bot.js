@@ -6,8 +6,7 @@ const { Telegraf } = require('telegraf');
 const { Telegram } = require('telegraf');
 
 // Commands.
-const bugCommand = require('@commands/bugCommand');
-const featureCommand = require('@commands/featureCommand');
+const loadCommands = require('@loaders/loadCommands');
 
 // Actions.
 const loadActions = require('@loaders/loadActions');
@@ -20,8 +19,7 @@ const telegram = new Telegram(process.env.BOT_TOKEN);
 bot.use(Telegraf.log());
 
 // Commands registration.
-bot.command('bug', (ctx) => bugCommand(ctx, telegram));
-bot.command('feature', (ctx) => featureCommand(ctx, telegram));
+loadCommands(bot, telegram);
 
 // Actions registration.
 loadActions(bot);

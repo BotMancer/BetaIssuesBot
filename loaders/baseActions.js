@@ -1,4 +1,4 @@
-const { getMessage, getOwner } = require('@utils/parseCbQuery');
+const { getReportMessage, getReportOwner } = require('@utils/parseCbQuery');
 
 /**
  *
@@ -10,8 +10,8 @@ module.exports = (bot, callback, trigger) => {
   bot.action(trigger, (ctx) => {
     const { text, entities } = ctx.callbackQuery.message;
 
-    const tickerOwner = getOwner(text, entities);
-    const tickerDesc = getMessage(text, entities);
+    const tickerOwner = getReportOwner(text, entities);
+    const tickerDesc = getReportMessage(text, entities);
 
     console.log(`Running action: ${trigger}`);
 
