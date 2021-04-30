@@ -35,6 +35,11 @@ const getReportOwner = (text, entities) => {
   }
 };
 
+/**
+ *
+ * @param {string} text
+ * @param {Array} entities
+ */
 const getCommandMessage = (text, entities) => {
   try {
     return text.replace(text.substr(0, entities[0].length), '').trim();
