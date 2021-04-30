@@ -3,7 +3,7 @@
  * @param {string} text
  * @param {Array} entities
  */
-const getMessage = (text, entities) => {
+const getReportMessage = (text, entities) => {
   try {
     return text
       .substr(
@@ -22,7 +22,7 @@ const getMessage = (text, entities) => {
  * @param {string} text
  * @param {Array} entities
  */
-const getOwner = (text, entities) => {
+const getReportOwner = (text, entities) => {
   try {
     return text
       .substr(
@@ -35,4 +35,12 @@ const getOwner = (text, entities) => {
   }
 };
 
-module.exports = { getMessage, getOwner };
+const getCommandMessage = (text, entities) => {
+  try {
+    return text.replace(text.substr(0, entities[0].length), '').trim();
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+module.exports = { getReportMessage, getReportOwner, getCommandMessage };
