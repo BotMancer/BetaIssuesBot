@@ -16,7 +16,7 @@ bugs, available on Telegram.
 | `reject-[type]`  | Mark as rejected. Available to be restored. |
 | `restore-[type]` | On rejected ticket, reset its status.       |
 
-\* `[type]` stands for `bug` or `feature`.
+\*`[type]` stands for `bug` or `feature`.
 
 ## Installation
 
