@@ -3,26 +3,6 @@ const fetch = require('node-fetch');
 const JIRA_TOKEN = process.env.JIRA_TOKEN;
 const BASE_URL = process.env.JIRA_BASE_URL;
 
-const projectsID = {
-  RRA: '10004',
-  APP: '10000'
-};
-
-const issueTypesID = {
-  RRA: {
-    BUG: '10026',
-    FEATURE: '10025',
-    IMPROVEMENT: '10022',
-    TASK: '10023'
-  },
-  APP: {
-    BUG: '10001',
-    REVIEW: '10006',
-    FIX: '10021',
-    TASK: '10002'
-  }
-};
-
 /**
  *
  * @param {keyof(projectsID)} projectID
@@ -84,5 +64,29 @@ const createIssue = async (projectID, issueTypeID, summary, desc, reporter) => {
     status: response.status
   };
 };
+
+/* JIRA PROJECTS SECTION */
+
+const projectsID = {
+  RRA: '10004',
+  APP: '10000'
+};
+
+const issueTypesID = {
+  RRA: {
+    BUG: '10026',
+    FEATURE: '10025',
+    IMPROVEMENT: '10022',
+    TASK: '10023'
+  },
+  APP: {
+    BUG: '10001',
+    REVIEW: '10006',
+    FIX: '10021',
+    TASK: '10002'
+  }
+};
+
+/* END OF JIRA PROJECTS SECTION */
 
 module.exports = { projectsID, issueTypesID, createIssue };

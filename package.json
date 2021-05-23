@@ -1,30 +1,30 @@
 {
-  "name": "sf-app-support-bot",
-  "version": "0.0.1",
-  "description": "Support bot for Telegram to help both developers and testers during app beta testing process.",
-  "main": "bot.js",
+  "name": "bbot",
+  "version": "1.0.0",
+  "description": "Born to help both developers and testers during apps beta testing.",
+  "author": "Luca Biagetti",
+  "license": "GPL-3.0",
+  "main": "bbot.js",
   "scripts": {
-    "test": "node ./bot.js",
+    "start": "node ./bbot.js",
     "format-code": "npx prettier --write ."
   },
+  "homepage": "https://github.com/isladot/sf-app-support-bot#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/isladot/sf-app-support-bot.git"
   },
-  "author": "Luca Biagetti",
-  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/isladot/sf-app-support-bot/issues"
   },
-  "homepage": "https://github.com/isladot/sf-app-support-bot#readme",
   "dependencies": {
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "module-alias": "^2.2.2",
     "node-fetch": "^2.6.1",
     "telegraf": "^4.3.0"
   },
   "devDependencies": {
-    "prettier": "^2.2.1"
+    "prettier": "^2.3.0"
   },
   "_moduleAliases": {
     "@root": ".",

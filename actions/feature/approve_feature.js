@@ -1,15 +1,18 @@
 const { Markup } = require('telegraf');
-const {
-  projectsID,
-  issueTypesID,
-  createIssue
-} = require('@clients/jiraClient');
+const { projectsID, issueTypesID, createIssue } = require('@clients/jira');
+
+/* JIRA PROJECT SECTION */
+
+const PROJECT_NAME = 'RRA';
+const ISSUE_TYPE = 'FEATURE';
+
+/* END OF JIRA PROJECT SECTION */
 
 module.exports = async (ctx, featureReporter, featureDescription) => {
   const res = await createIssue(
-    projectsID.RRA,
-    issueTypesID.RRA.FEATURE,
-    '[BOT]: New feature requestes.',
+    projectsID[PROJECT_NAME],
+    issueTypesID[PROJECT_NAME][ISSUE_TYPE],
+    '[BOT]: New feature requested.',
     featureDescription,
     featureReporter
   );
@@ -20,7 +23,7 @@ module.exports = async (ctx, featureReporter, featureDescription) => {
         [
           Markup.button.url(
             'VIEW ON JIRA',
-            `${process.env.JIRA_BASE_URL}/jira/software/c/projects/RRA/issues/${res.key}`
+            `${process.env.JIRA_BASE_URL}/jira/software/c/projects/${PROJECT_NAME}/issues/${res.key}`
           )
         ]
       ]
