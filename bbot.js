@@ -1,5 +1,5 @@
 require('module-alias/register'); // '@' routes.
-require('dotenv').config(); // .env files.
+require('dotenv').config(); // .env file.
 
 // Telegraf & Telegram.
 const { Telegraf } = require('telegraf');
@@ -25,4 +25,4 @@ loadCommands(bot, telegram);
 loadActions(bot);
 
 // Bot Launch.
-bot.launch(console.log('Bot started.')).catch((err) => console.error(err));
+bot.launch(console.log('BBot started.')).catch((err) => console.error(err));

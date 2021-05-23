@@ -1,4 +1,4 @@
-const { getCommandMessage } = require('@utils/parseCbQuery');
+const { getCommandMessage } = require('@utils/parseMessage');
 
 module.exports = (bot, telegram, callback, trigger) => {
   bot.command(trigger, (ctx) => {
@@ -11,4 +11,4 @@ module.exports = (bot, telegram, callback, trigger) => {
     callback(ctx, telegram, message, from);
   });
   return;
-}
+};

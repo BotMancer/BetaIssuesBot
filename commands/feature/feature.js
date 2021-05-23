@@ -35,4 +35,4 @@ module.exports = (ctx, telegram, message, owner) => {
       'Spiacente, è possibile eseguire questo comando esclusivamente nei canali di Beta Testing accreditati.\nLo Staff di Starting Finance.'
     );
   }
-}
+};

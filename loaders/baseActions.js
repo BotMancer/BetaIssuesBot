@@ -1,4 +1,4 @@
-const { getReportMessage, getReportOwner } = require('@utils/parseCbQuery');
+const { getReportMessage, getReportOwner } = require('@utils/parseMessage');
 
 /**
  *
