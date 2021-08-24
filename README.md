@@ -1,4 +1,4 @@
-# BBot
+# BetaIssuesBot
 
 Born to help:
 
